@@ -1,5 +1,21 @@
 <!DOCTYPE html>
 <html lang="es">
+    <!-- noto que cada elemento tiene un class muy especifico, lo cual es incorrecto.
+    lo primero que debes hacer al comenzar a estructurar un HTML es ver cada sección como un componente.
+    qué significa esto? que debes identificar dentro del diseño que elementos/secciones comparten estilos.
+    por ejemplo: viendo el diseño, identifico que hay 3 titulos que comparten el mismo font-size, color, estilo
+    de fuente, etc. ahora que ya lo tienes identificado, creas un estilo para los 3, el cual podrías llamar
+    'section-body-title' y utilizas esa clase para los tres titulos. lo mismo con los <p>. la idea de ir agrupando
+    elementos/secciones por parentezco. si le asignas una clase diferente a cada elemento, tendrás que crear un bloque
+    de estilo para cada uno, lo que termina siendo tremendo chorizo al que después no vas a querer entrar (y capaz 
+    que tu mente tampoco te lo permita). piensa en que tienes que reutilizar lo máximo posible. esta filosofía de ver
+    el código te ayudará mucho para cuando pases a aprender un framework o librería, en donde creas componentes reutilizables
+    agnósticos a su contenido. no importa si el componente lo utilizas en el inicio de la aplicación con contenido sobre 
+    perros y luego en otro lado lo utilizas para mostrar info de frutas. al componente no le interesa su contenido, le 
+    interesa su estructura y estilo.
+    cuándo tiene que si o si tener una clase especifica? cuando usas la clase para darle alguna funcionalidad, por ejemplo cuando
+    se lo das a un botón para darle X comportamiento. en ese caso si tiene que ser específico para ese elemento. igual toma en
+    cuenta que eso es por ahora que estás usando js vanilla, cuando pases a framework/libreria será diferente -->
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,6 +27,8 @@
         <nav>
             <img src="" alt="Logo inicial Lawliet" class="logo_header_lawliet">
             <h4 class="titulo_Lawliet">Lawliet</h4>
+            <!-- en frontend con JS se utiliza camelCase (barraNav) o kebab (barra-nav), nunca snake (barra_nav). este último
+            se utiliza en bases de datos -->
             <ul class="barra_nav">
                 <li>CONTACT</li>
                 <li>TESTIMONIAL</li>
@@ -22,9 +40,33 @@
     </header>
     <main>
         <section class="contenedor_1_presentacion">
-                <h4 class="inicio_sobre_titulo">New</h4>
-                <h4 class="frase_epigrafe">Stay connected to the upcoming & Recent jobs</h4>
-                <h1 class="titulo_principal">Your Solution <br> Legal Consultacy</h1>
+            <h4 class="inicio_sobre_titulo">New</h4>
+            <h4 class="frase_epigrafe">Stay connected to the upcoming & Recent jobs</h4>
+            <h1 class="titulo_principal">Your Solution <br> Legal Consultacy</h1>
+            <!-- si bien no es gran pecado utilizar español, la convención es el inglés 
+            'inicio_sobre_titulo' -> 'about-title'.
+
+            tomando en cuenta el primer comentario, la clase del h4 debería ser agnóstica. el elemento
+            al que te refieres acá se llama pill. 
+
+            
+            
+            como haria yo este componente:
+        -->
+        <div>
+            <!-- el div 'info-description' le da la forma al componente entero y p son los textos  -->
+            <div class="info-description">
+                <div class="pill">
+                    <p>New</p> 
+                </div>
+                <div class="info-label-description">
+                    <p>Stay connected to the upcoming & Recent jobs</p>
+                </div>
+            </div>
+            <!-- y luego lo que sigue: titulo, sub titulo, boton, etc etc -->
+        </div>
+
+                
                 <h3 class="bajada_titulo_destacado">We are here to help you take care of your legality <br> 
                     with the best service especially for you</h3>
                 <button id="boton_get_started">GET STARTED</button>
@@ -183,6 +225,44 @@
             </div>
         </section>   
   </footer>  
+  <!-- vas bien, sigue asi!!! ARRIBA MAURITO CODIGUITOS!!!!! -->
     
 </body>
+<style>
+    /* estoy usando px para el tamaño porque es un componente especifico que no se usa en otros lados. si 
+    se fuera a utilizar con otro contenido, usaría una estrategia diferente */
+    .info-description {
+        display: flex;
+        width: 430px;
+        font-size: 14px;
+        background-color: #E7F6FF;
+        border-radius: 30px;
+        margin: 5px;
+        height: 40px;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .pill {
+        background-color: #094B72;
+        color: white;
+        text-align: center;
+        border-radius: 30px;
+        height: 28px;
+        line-height: 28px;
+        width: 86px;
+    }
+    .info-label-description {
+        color: #193E6C;
+        border-radius: 30px;
+        width: 86px;
+        height: 28px;
+        line-height: 28px;
+        width: 300px;
+    }
+/* el tag p tiene margen por default, y en este caso no me interesa que se aplique por eso acá lo anulo para
+todos los p de este archivo */
+    p {
+        margin: 0px
+    }
+</style>
 </html>
